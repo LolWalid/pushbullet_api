@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe PushbulletApi::Subscription do
   before(:each) do
-    @user = PushbulletApi::User.new
+    VCR.use_cassette('pushbullet_user') do
+      @user = PushbulletApi::User.new(ACCESS_TOKEN)
+    end
   end
 
   it 'has CRUD services' do

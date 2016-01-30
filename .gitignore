@@ -8,3 +8,6 @@
 /spec/reports/
 /tmp/
 .rvmrc
+
+spec/vcr_cassettes
+*.gem

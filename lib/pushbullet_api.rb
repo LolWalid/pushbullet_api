@@ -1,3 +1,4 @@
+require 'pushbullet_api/api_handler'
 require 'pushbullet_api/version'
 require 'pushbullet_api/user'
 require 'pushbullet_api/chat'

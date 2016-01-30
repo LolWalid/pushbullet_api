@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe PushbulletApi::Device do
   before(:each) do
-    @user = PushbulletApi::User.new
+    VCR.use_cassette('pushbullet_user') do
+      @user = PushbulletApi::User.new(ACCESS_TOKEN)
+    end
   end
 
   it 'has CRUD services' do
@@ -18,19 +20,25 @@ describe PushbulletApi::Device do
     expect(device.destroy).to be(true)
   end
 
-  xit 'send a sms' do
-    message = 'This shouldn\'t work!'
-    number = 'XXXXXXXXXX'
-    source_user_iden = @user.source_user_iden
-    @phone.send_sms_notification(message: message, number: number,
-                                 source_user_iden: source_user_iden)
-  end
+  context 'sending notifications' do
+    before(:each) do
+      @device = @user.add_device(nickname: ' Nickname')
+    end
 
-  xit 'send a mirrored notificatio' do
-    title = 'Hey i\'m from an API'
-    body = 'This shouldn\'t work!'
-    source_user_iden = @user.source_user_iden
-    @phone.send_mirrored_notification(body: body, title: title,
-                                      source_user_iden: source_user_iden)
+    xit 'send a sms' do
+      message = 'This shouldn\'t work!'
+      number = 'XXXXXXXXXX'
+      source_user_iden = @user.source_user_iden
+      @device.send_sms_notification(message: message, number: number,
+                                    source_user_iden: source_user_iden)
+    end
+
+    xit 'send a mirrored notification' do
+      title = 'Hey i\'m from an API'
+      body = 'This shouldn\'t work!'
+      source_user_iden = @user.source_user_iden
+      @device.send_mirrored_notification(body: body, title: title,
+                                         source_user_iden: source_user_iden)
+    end
   end
 end
