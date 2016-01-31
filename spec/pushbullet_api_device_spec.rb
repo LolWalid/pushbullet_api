@@ -8,8 +8,12 @@ describe PushbulletApi::Device do
   end
 
   it 'has CRUD services' do
-    device = @user.add_device(nickname: ' Nickname')
-    expect(device).to exist
+    VCR.use_cassette('pushbullet_create_device') do
+      device = @user.add_device(nickname: ' Nickname')
+      expect(device).to exist
+    end
+
+    exit
 
     devices = @user.devices
     expect(devices).to exist

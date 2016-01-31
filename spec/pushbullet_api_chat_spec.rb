@@ -9,7 +9,7 @@ describe PushbulletApi::Chat do
 
   it 'has CRUD services' do
     VCR.use_cassette('create_chat') do
-      chat = @user.start_chat_with('rspec@pushbulletapi.com')
+      chat = @user.start_chat_with('rspec@test.com')
       expect(chat).to exist
     end
 
