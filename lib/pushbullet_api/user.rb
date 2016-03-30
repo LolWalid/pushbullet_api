@@ -10,9 +10,9 @@ module PushbulletApi
 
     def add_device(*arguments)
       HTTParty.post(HOST + '/devices',
-                          headers: { 'Access-Token' => @access_token,
-                                     'Content-Type' => 'application/json' },
-                          body: arguments.to_json)
+                    headers: { 'Access-Token' => @access_token,
+                                'Content-Type' => 'application/json' },
+                    body: arguments.to_json)
     end
 
     def method_missing(method_name, *arguments, &block)

@@ -7,4 +7,4 @@ VCR.configure do |config|
   config.hook_into :webmock # or :fakeweb
 end
 
-ACCESS_TOKEN = 'XXX'
+ACCESS_TOKEN = 'o.PinfIt5XmS8hVxizmArXFbl15lZ5H75z'
